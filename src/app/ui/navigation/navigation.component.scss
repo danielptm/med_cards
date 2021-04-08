@@ -1,0 +1,20 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  & > div {
+    width: 50%;
+    padding-top: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+.icon1 {
+  background-color: whitesmoke;
+}
+
+
+.icon2 {
+  background-color: lightgray;
+}

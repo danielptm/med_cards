@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="card col-lg-offset-3 col-lg-6">
+      <h3>Complaints</h3>
+    </div>
+  </div>
+  <div class="row" *ngFor="let c of complaints">
+    <div class="card col-lg-offset-3 col-lg-6">
+      <app-complaints-card></app-complaints-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card col-lg-offset-3 col-lg-6">
+      <app-navigation></app-navigation>
+    </div>
+  </div>
+</div>
