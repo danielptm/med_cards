@@ -44,12 +44,15 @@ export class PatientParserService {
     return result;
   }
 
-  getConditions(jsonPayload: any): any {
+  getConditions(jsonPayload: any): Condition[] {
     const start = jsonPayload;
     const result: Condition[] = [];
     for (const i of start.entry) {
       const c = new Condition();
       c.id = i.resource.id;
+      for (const s of i.resource.code.coding) {
+        c.conditionIds.push(s.code);
+      }
       c.text = i.resource.code.text;
       c.abatementDateTime = i.resource.abatementDateTime;
       result.push(c);

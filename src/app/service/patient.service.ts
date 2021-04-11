@@ -28,6 +28,7 @@ export class PatientService {
   setPatientConditions(conditions: Condition[]): void  {
     this.patientConditions = [];
     this.patientConditions.push(...conditions);
+    const x = undefined;
   }
 
   setPatientProcedures(procedures: Procedure[]): void  {

@@ -3,4 +3,5 @@ export class Condition {
   text: string;
   abatementDateTime: string;
   active: true;
+  conditionIds: string[] = [];
 }
