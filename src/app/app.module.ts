@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ComplaintsComponent } from './complaints/complaints.component';
-import { MetricsComponent } from './metrics/metrics.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FhirhttpService} from './util/fhirhttp.service';
 import { CardComponent } from './ui/card/card.component';
@@ -15,7 +13,6 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ComplaintsCardComponent } from './ui/complaints-card/complaints-card.component';
 import {CommonModule} from '@angular/common';
 import {PatientService} from './service/patient.service';
-import { ProceduresComponent } from './procedures/procedures.component';
 import { GenericCardComponent } from './ui/generic-card/generic-card.component';
 
 @NgModule({
@@ -23,12 +20,9 @@ import { GenericCardComponent } from './ui/generic-card/generic-card.component';
     AppComponent,
     SearchComponent,
     ProfileComponent,
-    ComplaintsComponent,
-    MetricsComponent,
     CardComponent,
     NavigationComponent,
     ComplaintsCardComponent,
-    ProceduresComponent,
     GenericCardComponent
   ],
   imports: [

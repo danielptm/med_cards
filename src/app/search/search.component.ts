@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
       this.patients = [];
       this.patients.push(...this.cachedPatients);
     }
-    this.patients = this.patients.filter((item) => item.firstName.includes(text));
+    this.patients = this.patients.filter((item) => item.firstName.includes(text) || item.id.includes(text));
   }
 
 }
