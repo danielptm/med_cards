@@ -41,6 +41,18 @@ export class FhirhttpService {
     return this.http.get(this.originalUrl + '/Observation?patient=' + patientId).toPromise();
   }
 
+  getDiagnosticReportForpatient(patientId: string): Promise<any> {
+    return this.http.get(this.originalUrl + '/DiagnosticReport?patient=' + patientId).toPromise();
+  }
+
+  getClinicalImpressionForPatient(patientId: string): Promise<any> {
+    return this.http.get(this.originalUrl + '/ClinicalImpression?patient=' + patientId).toPromise();
+  }
+
+  getResearchSubjectForPatient(patientId: string): Promise<any> {
+    return this.http.get(this.originalUrl + '/ResearchSubject?patient=' + patientId).toPromise();
+  }
+
 
   initialize(): Promise<any> {
     return new Promise(resolve => {
