@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FhirhttpService} from './util/fhirhttp.service';
-import {Practitioner} from './model/practitioner';
+import {PatientService} from './service/patient.service';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +11,11 @@ export class AppComponent implements OnInit {
 
   physicianName: string;
 
-  constructor(private fhir: FhirhttpService) {
+  constructor(private fhir: FhirhttpService, private patientService: PatientService) {
   }
 
   ngOnInit(): void {
-    this.fhir.getPractitioner()
-      .then((data: Practitioner) => {
-        this.physicianName = data.prefix + ' ' + data.firstName + ' ' + data.lastName;
-      });
+
   }
 
 }

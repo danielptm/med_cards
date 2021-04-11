@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {PatientService} from '../service/patient.service';
+import {Condition} from '../model/condition';
 
 @Component({
   selector: 'app-complaints',
@@ -7,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComplaintsComponent implements OnInit {
 
-  constructor() { }
-  complaints = [1, 2, 3, 4, 5];
+  conditions: Condition[] = [];
+
+  constructor(private patientService: PatientService) { }
+
 
   ngOnInit(): void {
+    this.conditions.push(...this.patientService.getConditions());
   }
 
 }

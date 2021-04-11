@@ -21,4 +21,8 @@ export class NavigationComponent implements OnInit {
   routeSearch(): void {
     this.router.navigate(['search']);
   }
+
+  routeProcedures(): void {
+    this.router.navigate(['procedures']);
+  }
 }

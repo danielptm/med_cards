@@ -1,9 +1,22 @@
 .complaintsCard {
   background-color: white;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   padding: 10px;
   margin-top: 10px;
   cursor: pointer;
+}
+
+.lowerContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.active {
+  color: green;
+}
+
+.inactive {
+  color: red;
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Condition} from '../../model/condition';
 
 @Component({
   selector: 'app-complaints-card',
@@ -9,6 +10,9 @@ import {Router} from '@angular/router';
 export class ComplaintsCardComponent implements OnInit {
 
   constructor(private router: Router) { }
+
+  @Input() condition: Condition;
+
 
   ngOnInit(): void {
   }

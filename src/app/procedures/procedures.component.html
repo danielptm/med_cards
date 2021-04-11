@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-offset-3 col-lg-6">
+      <h3>Procedures: </h3>
+    </div>
+  </div>
+  <div class="row" *ngFor="let p of procedures">
+    <div class="col-lg-offset-3 col-lg-6">
+      <app-generic-card
+        [text] = "p.text"
+      ></app-generic-card>
+    </div>
+  </div>
+</div>

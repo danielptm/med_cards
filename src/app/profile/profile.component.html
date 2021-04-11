@@ -2,14 +2,10 @@
   <div class="row">
     <div class="patientDisplay col-lg-offset-3 col-lg-6">
       <h3>Profile</h3>
-      <div>Name:</div>
-      <div>Age:</div>
-      <div>Physician note:</div>
-      <div>History:</div>
-      <div>Vital signs:</div>
-      <div>Scores:</div>
-      <div>Labs:</div>
-      <div>Measurements:</div>
+      <div>Id: {{patient?.id}}</div>
+      <div>Name: {{patient?.firstName + " " + patient?.lastName}}</div>
+      <div>Birthdate: {{this.patient?.birthDate}}</div>
+      <div>Gender: {{this.patient?.gender}}</div>
       <app-navigation></app-navigation>
     </div>
   </div>

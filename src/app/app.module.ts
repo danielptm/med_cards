@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ComplaintsComponent } from './complaints/complaints.component';
-import { ComplaintDetailsComponent } from './complaint-details/complaint-details.component';
 import { MetricsComponent } from './metrics/metrics.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FhirhttpService} from './util/fhirhttp.service';
@@ -14,6 +13,10 @@ import { CardComponent } from './ui/card/card.component';
 import { NavigationComponent } from './ui/navigation/navigation.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ComplaintsCardComponent } from './ui/complaints-card/complaints-card.component';
+import {CommonModule} from '@angular/common';
+import {PatientService} from './service/patient.service';
+import { ProceduresComponent } from './procedures/procedures.component';
+import { GenericCardComponent } from './ui/generic-card/generic-card.component';
 
 @NgModule({
   declarations: [
@@ -21,21 +24,24 @@ import { ComplaintsCardComponent } from './ui/complaints-card/complaints-card.co
     SearchComponent,
     ProfileComponent,
     ComplaintsComponent,
-    ComplaintDetailsComponent,
     MetricsComponent,
     CardComponent,
     NavigationComponent,
-    ComplaintsCardComponent
+    ComplaintsCardComponent,
+    ProceduresComponent,
+    GenericCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
     HttpClientModule,
     AngularSvgIconModule.forRoot()
 
   ],
   providers: [
-    FhirhttpService
+    FhirhttpService,
+    PatientService
   ],
   bootstrap: [AppComponent]
 })

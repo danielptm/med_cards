@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {SearchComponent} from './search/search.component';
 import {ProfileComponent} from './profile/profile.component';
 import {MetricsComponent} from './metrics/metrics.component';
 import {ComplaintsComponent} from './complaints/complaints.component';
-import {ComplaintDetailsComponent} from './complaint-details/complaint-details.component';
+import {ProceduresComponent} from './procedures/procedures.component';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     component: ProfileComponent,
     pathMatch: 'full'
   },
@@ -33,8 +33,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'complaint-details',
-    component: ComplaintDetailsComponent,
+    path: 'procedures',
+    component: ProceduresComponent,
     pathMatch: 'full'
   }
 ];

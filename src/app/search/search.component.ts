@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Patient} from '../model/patient';
+import {FhirhttpService} from '../util/fhirhttp.service';
+import {PatientService} from '../service/patient.service';
+import {PatientParserService} from '../util/patient-parser.service';
 
 @Component({
   selector: 'app-search',
@@ -7,11 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fhir: FhirhttpService, private patientService: PatientService, private parser: PatientParserService) { }
 
-  compalints = [1, 2, 3, 4, 5, 6];
+  patients: Patient[] = [];
+  cachedPatients: Patient[] = [];
 
   ngOnInit(): void {
+    if (this.patientService.patients.length === 0) {
+      this.fhir.initialize()
+        .then((patients: any) => {
+          const result = this.parser.getPatients(patients);
+          this.patientService.setPatients(result);
+          this.patients.push(...result);
+          this.cachedPatients.push(...result);
+        });
+    } else {
+      this.patients.push(...this.patientService.patients);
+      this.cachedPatients.push(...this.patientService.patients);
+    }
+  }
+
+  filter(text): void {
+    if (text.length === 0 && this.patients.length < this.cachedPatients.length) {
+      this.patients = [];
+      this.patients.push(...this.cachedPatients);
+    }
+    this.patients = this.patients.filter((item) => item.firstName.includes(text));
   }
 
 }
