@@ -12,8 +12,6 @@ export class FhirhttpService {
   patientUrl = this.originalUrl + '/Patient';
   practitionerUrl = this.originalUrl + '/Practitioner';
 
-
-
   aud = this.startUrl;
   redirectUri = 'http://localhost:4200';
 
