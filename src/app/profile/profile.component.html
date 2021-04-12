@@ -6,13 +6,13 @@
       <div>Name: {{patient?.firstName + " " + patient?.lastName}}</div>
       <div>Birthdate: {{this.patient?.birthDate}}</div>
       <div>Gender: {{this.patient?.gender}}</div>
-      <h4 *ngIf="this.patientService.patientConditions.length > 0">Patient has suffered stroke:</h4>
-      <h4 *ngIf="this.patientService.patientConditions.length == 0">No recorded strokes</h4>
-      <div *ngFor="let c of this.patientService.patientConditions">
-        <app-generic-card
-          [text]="c.text"
-        ></app-generic-card>
-      </div>
+<!--      <h4 *ngIf="this.patientService.patientConditions.length > 0">Patient has suffered stroke:</h4>-->
+<!--      <h4 *ngIf="this.patientService.patientConditions.length == 0">No recorded strokes</h4>-->
+<!--      <div *ngFor="let c of this.patientService.patientConditions">-->
+<!--        <app-generic-card-->
+<!--          [text]="c.text"-->
+<!--        ></app-generic-card>-->
+<!--      </div>-->
       <app-navigation></app-navigation>
     </div>
   </div>

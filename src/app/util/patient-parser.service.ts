@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Condition} from '../model/condition';
 import {Observation} from '../model/observation';
-import {MedicationRequest} from '../model/medication-request';
-import {Procedure} from '../model/procedure';
 import {Patient} from '../model/patient';
 
 @Injectable({
@@ -60,33 +58,6 @@ export class PatientParserService {
     return result;
   }
 
-  getMedicationRequests(jsonPayload: any): any {
-    const start = jsonPayload;
-    const result: MedicationRequest[] = [];
-    for (const i of start.entry) {
-      const m = new MedicationRequest();
-      m.text = i.resource.medicationCodeableConcept.text;
-      m.authoredDate = i.resource.authoredOn;
-      m.status = i.resource.status;
-      result.push(m);
-    }
-
-    return result;
-  }
-
-  getProcedures(jsonPayload: any): any {
-    const start = jsonPayload;
-    const result: Procedure[] = [];
-    for (const i of start.entry) {
-      const p = new Procedure();
-      p.id = i.resource.id;
-      p.text = i.resource.code && i.resource.code.text ? i.resource.code.text : undefined;
-      p.dateStart = i.resource.performedPeriod && i.resource.performedPeriod.start ? i.resource.performedPeriod.start : undefined;
-      p.dateEnd = i.resource.performedPeriod && i.resource.performedPeriod.end ? i.resource.performedPeriod.end : undefined;
-      result.push(p);
-    }
-    return result;
-  }
 
 
 }
