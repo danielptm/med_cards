@@ -10,12 +10,14 @@ import {MedicationRequest} from '../model/medication-request';
 })
 export class PatientService {
 
+  // These data points are for the selected patient
   patient: Patient;
   patientObservations: Observation[] = [];
   patientConditions: Condition[] = [];
   patientProcedures: Procedure[] = [];
   patientMedicationRequests: MedicationRequest[] = [];
 
+  // This is for all of the patients once the user visits the app.
   patients: Patient[] = [];
 
   constructor() { }

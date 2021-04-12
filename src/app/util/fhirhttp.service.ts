@@ -9,19 +9,19 @@ import {PatientService} from '../service/patient.service';
 export class FhirhttpService {
   originalUrl = 'https://launch.smarthealthit.org/v/r4/sim/eyJoIjoiMSIsImoiOiIxIiwiZSI6ImU0NDNhYzU4LThlY2UtNDM4NS04ZDU1LTc3NWMxYjhmM2EzNyJ9/fhir';
   startUrl = this.originalUrl + '/metadata';
-  patientUrl = this.originalUrl + '/Patient';
-  practitionerUrl = this.originalUrl + '/Practitioner';
 
-  aud = this.startUrl;
   redirectUri = 'http://localhost:4200';
 
   authorizeUri: string;
 
   authorizedUrlEncoded: string;
 
-  practitioner: string;
 
   constructor(private http: HttpClient, private patientService: PatientService) { }
+
+  getPatientAll(id: string): Promise<any> {
+    return this.http.get(this.originalUrl + '/Patient/' + id + '/$everything').toPromise();
+  }
 
   getConditionsForPatient(patientId: string): Promise<any> {
     return this.http.get(this.originalUrl + '/Condition?patient=' + patientId).toPromise();
@@ -63,11 +63,6 @@ export class FhirhttpService {
           this.authorizedUrlEncoded = this.authorizeUri + '&redirect_uri=' + encodeURI(this.redirectUri);
           console.log(this.authorizedUrlEncoded);
           this.http.get(this.authorizedUrlEncoded);
-          this.http.get(this.patientUrl)
-            .toPromise()
-            .then((patients: any) => {
-              resolve(patients);
-            });
         }, e => {
           console.error(e);
         });
