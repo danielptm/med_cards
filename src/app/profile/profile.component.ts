@@ -14,7 +14,9 @@ export class ProfileComponent implements OnInit {
 
   patient: Patient;
 
-  constructor(private route: ActivatedRoute, private fhirService: FhirhttpService, private patientService: PatientService, private parse: PatientParserService) { }
+  constructor(private route: ActivatedRoute, private fhirService: FhirhttpService,
+              public patientService: PatientService,
+              private parse: PatientParserService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -38,25 +40,26 @@ export class ProfileComponent implements OnInit {
   loadData(id): void {
     this.patient = this.patientService.patients.filter(p => p.id === id)[0];
     this.patientService.setPatient(this.patient);
-    this.fhirService.getConditionsForPatient(this.patient.id)
+    this.fhirService.getConditionsForPatient(id)
       .then(c => {
         const result = this.parse.getConditions(c);
-        this.patientService.setPatientConditions(result);
+        const strokeConditions = result.filter((co) => co.conditionIds.includes('230690007'));
+        this.patientService.setPatientConditions(strokeConditions);
       });
 
-    this.fhirService.getMedicationRequestsForPatient(this.patient.id)
+    this.fhirService.getMedicationRequestsForPatient(id)
       .then(mr => {
         const result = this.parse.getMedicationRequests(mr);
         this.patientService.setMedicationRequests(result);
       });
 
-    this.fhirService.getObservationsForPatient(this.patient.id)
+    this.fhirService.getObservationsForPatient(id)
       .then(o => {
         const result = this.parse.getObservations(o);
         this.patientService.setPatientObservations(result);
       });
 
-    this.fhirService.getProceduresForPattient(this.patient.id)
+    this.fhirService.getProceduresForPattient(id)
       .then(p => {
         const result = this.parse.getProcedures(p);
         this.patientService.setPatientProcedures(result);

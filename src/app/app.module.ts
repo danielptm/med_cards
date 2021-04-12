@@ -7,29 +7,32 @@ import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FhirhttpService} from './util/fhirhttp.service';
-import { CardComponent } from './ui/card/card.component';
+import { PatientCardComponent } from './ui/patient-card/patient-card.component';
 import { NavigationComponent } from './ui/navigation/navigation.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { ComplaintsCardComponent } from './ui/complaints-card/complaints-card.component';
 import {CommonModule} from '@angular/common';
 import {PatientService} from './service/patient.service';
 import { GenericCardComponent } from './ui/generic-card/generic-card.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     ProfileComponent,
-    CardComponent,
+    PatientCardComponent,
     NavigationComponent,
-    ComplaintsCardComponent,
     GenericCardComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CommonModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
     AngularSvgIconModule.forRoot()
 
   ],
