@@ -53,35 +53,35 @@ describe('PatientParserService', () => {
       });
   });
 
-  it('MedicationRequest was parsed', () => {
-    http.get(medicationRequest)
-      .toPromise()
-      .then(response => {
-        // const response = r;
-        const result = service.getMedicationRequests(response);
-        expect(result.length).toBe(5);
-      });
-  });
-
-  it('Procedures were parsed', () => {
-    http.get(procedure)
-      .toPromise()
-      .then(response => {
-        // const response = r;
-        const result = service.getProcedures(response);
-        expect(result.length).toBe(10);
-      });
-  });
-
-  it('Practitioner was parsed', () => {
-    http.get(practitioner)
-      .toPromise()
-      .then(response => {
-        // const response = r;
-        const result = service.getProcedures(response);
-        expect(result.length).toBe(50);
-      });
-  });
+  // it('MedicationRequest was parsed', () => {
+  //   http.get(medicationRequest)
+  //     .toPromise()
+  //     .then(response => {
+  //       // const response = r;
+  //       const result = service.getMedicationRequests(response);
+  //       expect(result.length).toBe(5);
+  //     });
+  // });
+  //
+  // it('Procedures were parsed', () => {
+  //   http.get(procedure)
+  //     .toPromise()
+  //     .then(response => {
+  //       // const response = r;
+  //       const result = service.getProcedures(response);
+  //       expect(result.length).toBe(10);
+  //     });
+  // });
+  //
+  // it('Practitioner was parsed', () => {
+  //   http.get(practitioner)
+  //     .toPromise()
+  //     .then(response => {
+  //       // const response = r;
+  //       const result = service.getProcedures(response);
+  //       expect(result.length).toBe(50);
+  //     });
+  // });
 
   it('Patients were parsed', () => {
     http.get(allPatients)
