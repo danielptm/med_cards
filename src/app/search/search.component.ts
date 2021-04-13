@@ -17,29 +17,15 @@ export class SearchComponent implements OnInit {
   cachedPatients: Patient[] = [];
 
   ngOnInit(): void {
-    if (this.patientService.patients.length === 0) {
-      this.fhir.initialize()
-        .then((patients: any) => {
-          const result = this.parser.getPatients(patients);
-          this.patientService.setPatients(result);
-          this.patients.push(...result);
-          this.cachedPatients.push(...result);
-        });
-    } else {
-      this.patients.push(...this.patientService.patients);
-      this.cachedPatients.push(...this.patientService.patients);
-    }
+
   }
 
-  filter(text): void {
-    if (text.length === 0 && this.patients.length < this.cachedPatients.length) {
-      this.patients = [];
-      this.patients.push(...this.cachedPatients);
-    }
-    this.patients = this.patients.filter((item) =>
-      item.firstName.toLowerCase().includes(text.toLowerCase())
-        || item.lastName.toLowerCase().includes(text.toLowerCase())
-        || item.id.includes(text));
+  search(text): void {
+    this.fhir.getPatientAll(text)
+      .then((response) => {
+        // Parse the response here. Get the Observations, conditions etc.
+        console.log(response);
+      });
   }
 
 }

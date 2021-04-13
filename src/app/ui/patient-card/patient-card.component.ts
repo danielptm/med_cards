@@ -3,11 +3,11 @@ import {Router} from '@angular/router';
 import {Patient} from '../../model/patient';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  selector: 'app-patient-card',
+  templateUrl: './patient-card.component.html',
+  styleUrls: ['./patient-card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class PatientCardComponent implements OnInit {
 
   constructor(private router: Router) { }
 
