@@ -27,70 +27,82 @@ describe('PatientParserService', () => {
     http = TestBed.inject(HttpClient);
   });
 
-  it('should be created', () => {
+  it('PatientParserService was created', () => {
     expect(service).toBeTruthy();
   });
 
 
-  it('Parse conditions', () => {
+  it('Conditions were parsed', () => {
     http.get(condition)
       .toPromise()
-      .then(r => {
-        const response = r;
+      .then(response => {
+        //const response = r;
         const result = service.getConditions(response);
         expect(result.length).toBe(15);
+        //expect(result.length).toBe(15);
       });
   });
 
-  it('Parse observation', () => {
+  it('Observation was parsed', () => {
     http.get(observation)
       .toPromise()
-      .then(r => {
-        const response = r;
+      .then(response => {
+        //const response = r;
         const result = service.getObservations(response);
         expect(result.length).toBe(50);
       });
   });
 
-  it('Parse medicationRequest', () => {
+  it('MedicationRequest was parsed', () => {
     http.get(medicationRequest)
       .toPromise()
-      .then(r => {
-        const response = r;
+      .then(response => {
+        // const response = r;
         const result = service.getMedicationRequests(response);
         expect(result.length).toBe(5);
       });
   });
 
-  it('Parse procedures', () => {
+  it('Procedures were parsed', () => {
     http.get(procedure)
       .toPromise()
-      .then(r => {
-        const response = r;
+      .then(response => {
+        // const response = r;
         const result = service.getProcedures(response);
         expect(result.length).toBe(10);
       });
   });
 
-  it('Parse practitioner', () => {
+  it('Practitioner was parsed', () => {
     http.get(practitioner)
       .toPromise()
-      .then(r => {
-        const response = r;
+      .then(response => {
+        // const response = r;
         const result = service.getProcedures(response);
         expect(result.length).toBe(50);
       });
   });
 
-  it('Parse patients', () => {
+  it('Patients were parsed', () => {
     http.get(allPatients)
       .toPromise()
-      .then(r => {
-        const response = r;
+      .then(response => {
+        // const response = r;
         const result = service.getPatients(response);
         expect(result.length).toBe(50);
       });
   });
+
+
+  // it('One patient was parsed', () => {
+  //   http.get(onePatientPath)
+  //     .toPromise()
+  //     .then(response => {
+  //       // const response = r;
+  //       const result = service.getPatients(response);
+  //       expect(result.length).toBe(1); //or 50
+  //     });
+  // });
 
 
 });
