@@ -13,6 +13,8 @@ describe('PatientParserService', () => {
   const procedure = 'assets/procedure.json';
   const medicationRequest = 'assets/medicationRequest.json';
   const medication = 'assets/medication.json';
+  const imagingStudy = 'assets/imagingStudy.json';
+  const clinicalImpression = 'assets/clinicalImpression.json';
 
   let http: HttpClient;
   //
@@ -67,6 +69,24 @@ describe('PatientParserService', () => {
       .then(response => {
         const result = service.getMedicationRequests(response);
         expect(result.length).toBe(5);
+      });
+  });
+
+  it('Imaging Studies were parsed', () => {
+    http.get(imagingStudy)
+      .toPromise()
+      .then(response => {
+        const result = service.getImagingStudies(response);
+        expect(result.length).toBe(1);
+      });
+  });
+
+  it('Clinical Impressions were parsed', () => {
+    http.get(clinicalImpression)
+      .toPromise()
+      .then(response => {
+        const result = service.getClinicalImpressions(response);
+        expect(result.length).toBe(1);
       });
   });
   //
