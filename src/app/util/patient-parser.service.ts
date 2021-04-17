@@ -2,15 +2,15 @@ import {Injectable} from '@angular/core';
 import {Condition} from '../model/condition';
 import {Observation} from '../model/observation';
 import {Patient} from '../model/patient';
+import {Medication} from "../model/medication";
+import {MedicationRequest} from "../model/medication-request";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientParserService {
 
-
   constructor() { }
-
 
   getPatients(jsonPayload): Patient[] {
     const start = jsonPayload;
@@ -58,6 +58,27 @@ export class PatientParserService {
     return result;
   }
 
+  getMedications(jsonPayload: any): Medication[]{
+    const start = jsonPayload;
+    const result: Medication[] = [];
+    for (const i of start.entry) {
+      const c = new Medication();
+      c.id = i.resource.id;
+      c.code = i.resource.code.text;
+      result.push(c);
+    }
+    return result;
+  }
 
-
+  getMedicationRequests(jsonPayload: any): MedicationRequest[]{
+    const start = jsonPayload;
+    const result: MedicationRequest[] = [];
+    for (const i of start.entry) {
+      const c = new MedicationRequest();
+      c.id = i.resource.id;
+      c.text = i.resource.medicationCodeableConcept.text;
+      result.push(c);
+    }
+    return result;
+  }
 }

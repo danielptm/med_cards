@@ -12,6 +12,7 @@ describe('PatientParserService', () => {
   const condition = 'assets/conditionForPatient.json';
   const procedure = 'assets/procedure.json';
   const medicationRequest = 'assets/medicationRequest.json';
+  const medication = 'assets/medication.json';
 
   let http: HttpClient;
   //
@@ -36,7 +37,6 @@ describe('PatientParserService', () => {
     http.get(condition)
       .toPromise()
       .then(response => {
-        //const response = r;
         const result = service.getConditions(response);
         expect(result.length).toBe(15);
         //expect(result.length).toBe(15);
@@ -47,27 +47,33 @@ describe('PatientParserService', () => {
     http.get(observation)
       .toPromise()
       .then(response => {
-        //const response = r;
         const result = service.getObservations(response);
         expect(result.length).toBe(50);
       });
   });
 
-  // it('MedicationRequest was parsed', () => {
-  //   http.get(medicationRequest)
-  //     .toPromise()
-  //     .then(response => {
-  //       // const response = r;
-  //       const result = service.getMedicationRequests(response);
-  //       expect(result.length).toBe(5);
-  //     });
-  // });
+  it('Medication was parsed', () => {
+    http.get(medication)
+      .toPromise()
+      .then(response => {
+        const result = service.getMedications(response);
+        expect(result.length).toBe(0);
+      });
+  });
+
+  it('MedicationRequest was parsed', () => {
+    http.get(medicationRequest)
+      .toPromise()
+      .then(response => {
+        const result = service.getMedicationRequests(response);
+        expect(result.length).toBe(5);
+      });
+  });
   //
   // it('Procedures were parsed', () => {
   //   http.get(procedure)
   //     .toPromise()
   //     .then(response => {
-  //       // const response = r;
   //       const result = service.getProcedures(response);
   //       expect(result.length).toBe(10);
   //     });
@@ -77,7 +83,6 @@ describe('PatientParserService', () => {
   //   http.get(practitioner)
   //     .toPromise()
   //     .then(response => {
-  //       // const response = r;
   //       const result = service.getProcedures(response);
   //       expect(result.length).toBe(50);
   //     });
@@ -87,7 +92,6 @@ describe('PatientParserService', () => {
     http.get(allPatients)
       .toPromise()
       .then(response => {
-        // const response = r;
         const result = service.getPatients(response);
         expect(result.length).toBe(50);
       });
@@ -98,7 +102,6 @@ describe('PatientParserService', () => {
   //   http.get(onePatientPath)
   //     .toPromise()
   //     .then(response => {
-  //       // const response = r;
   //       const result = service.getPatients(response);
   //       expect(result.length).toBe(1); //or 50
   //     });
