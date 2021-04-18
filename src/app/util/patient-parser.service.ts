@@ -4,6 +4,8 @@ import {Observation} from '../model/observation';
 import {Patient} from '../model/patient';
 import {Medication} from "../model/medication";
 import {MedicationRequest} from "../model/medication-request";
+import {ImagingStudy} from "../model/imaging-study";
+import {ClinicalImpression} from "../model/clinical-impression";
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +82,32 @@ export class PatientParserService {
       result.push(c);
     }
     return result;
+  }
+
+  getImagingStudies(jsonPayload: any): ImagingStudy[]{
+    const start = jsonPayload;
+    const result: ImagingStudy[] = [];
+    for (const i of start.entry) {
+      const c = new ImagingStudy();
+      c.id = i.resource.id;
+      for (const s of i.resource.series) {
+        c.description = s.description;
+      }
+      result.push(c);
+    }
+    return result;
+  }
+
+  getClinicalImpressions(jsonPayload: any):ClinicalImpression[]{
+    const start = jsonPayload;
+    const result: ClinicalImpression[] = [];
+    for (const i of start.entry) {
+      const c = new ClinicalImpression();
+      c.id = i.resource.id;
+      c.code = i.resource.investigation.code.text;
+      result.push(c);
+    }
+    return result;
+
   }
 }
