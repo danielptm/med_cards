@@ -3,6 +3,7 @@ import {Observation} from './observation';
 import {DiagnosticReport} from './diagnostic-report';
 import {ImagingStudy} from './imaging-study';
 import {Medication} from './medication';
+import {ClinicalImpression} from './clinical-impression';
 
 export class Patient {
   id: string;
@@ -23,5 +24,7 @@ export class Patient {
   diagnosticImages: ImagingStudy[] = [];
 
   medications: Medication[] = [];
+
+  clinicalImpressions: ClinicalImpression[] = [];
 
 }

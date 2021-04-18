@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {Condition} from '../model/condition';
 import {Observation} from '../model/observation';
 import {Patient} from '../model/patient';
-import {Medication} from "../model/medication";
-import {MedicationRequest} from "../model/medication-request";
-import {ImagingStudy} from "../model/imaging-study";
-import {ClinicalImpression} from "../model/clinical-impression";
+import {Medication} from '../model/medication';
+import {MedicationRequest} from '../model/medication-request';
+import {ImagingStudy} from '../model/imaging-study';
+import {ClinicalImpression} from '../model/clinical-impression';
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +30,9 @@ export class PatientParserService {
   }
 
   getObservations(jsonPayload: any): any {
-    const start = jsonPayload;
+    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'Observation');
     const result: Observation[] = [];
-    for (const i of start.entry) {
+    for (const i of start) {
       const o = new Observation();
       o.id = i.resource.id;
       o.text = i.resource.code.text;
@@ -45,9 +45,9 @@ export class PatientParserService {
   }
 
   getConditions(jsonPayload: any): Condition[] {
-    const start = jsonPayload;
+    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'Condition');;
     const result: Condition[] = [];
-    for (const i of start.entry) {
+    for (const i of start) {
       const c = new Condition();
       c.id = i.resource.id;
       for (const s of i.resource.code.coding) {
@@ -61,9 +61,9 @@ export class PatientParserService {
   }
 
   getMedications(jsonPayload: any): Medication[]{
-    const start = jsonPayload;
+    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'Medication');
     const result: Medication[] = [];
-    for (const i of start.entry) {
+    for (const i of start) {
       const c = new Medication();
       c.id = i.resource.id;
       c.code = i.resource.code.text;
@@ -73,9 +73,9 @@ export class PatientParserService {
   }
 
   getMedicationRequests(jsonPayload: any): MedicationRequest[]{
-    const start = jsonPayload;
+    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'MedicationRequest');
     const result: MedicationRequest[] = [];
-    for (const i of start.entry) {
+    for (const i of start) {
       const c = new MedicationRequest();
       c.id = i.resource.id;
       c.text = i.resource.medicationCodeableConcept.text;
@@ -85,9 +85,9 @@ export class PatientParserService {
   }
 
   getImagingStudies(jsonPayload: any): ImagingStudy[]{
-    const start = jsonPayload;
+    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'ImagingStudy');
     const result: ImagingStudy[] = [];
-    for (const i of start.entry) {
+    for (const i of start) {
       const c = new ImagingStudy();
       c.id = i.resource.id;
       for (const s of i.resource.series) {
@@ -98,13 +98,14 @@ export class PatientParserService {
     return result;
   }
 
-  getClinicalImpressions(jsonPayload: any):ClinicalImpression[]{
-    const start = jsonPayload;
+  getClinicalImpressions(jsonPayload: any): ClinicalImpression[]{
+    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'ClinicalImpression');
+    console.log(start);
     const result: ClinicalImpression[] = [];
-    for (const i of start.entry) {
+    for (const i of start) {
       const c = new ClinicalImpression();
       c.id = i.resource.id;
-      c.code = i.resource.investigation.code.text;
+      c.code = i.resource.investigation[0].code.text;
       result.push(c);
     }
     return result;
