@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.patient = this.patientService.getPatient();
+    // if (this.patient.conditions.filter(item => item.))
     // this.route.params.subscribe(params => {
     //   if (params.id) {
     //     if (this.patientService.patients.length === 0) {

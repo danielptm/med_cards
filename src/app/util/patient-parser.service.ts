@@ -30,9 +30,9 @@ export class PatientParserService {
   }
 
   getObservations(jsonPayload: any): any {
-    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'Observation');
+    const start = jsonPayload;
     const result: Observation[] = [];
-    for (const i of start) {
+    for (const i of start.entry) {
       const o = new Observation();
       o.id = i.resource.id;
       o.text = i.resource.code.text;
@@ -45,9 +45,9 @@ export class PatientParserService {
   }
 
   getConditions(jsonPayload: any): Condition[] {
-    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'Condition');;
+    const start = jsonPayload;
     const result: Condition[] = [];
-    for (const i of start) {
+    for (const i of start.entry) {
       const c = new Condition();
       c.id = i.resource.id;
       for (const s of i.resource.code.coding) {
@@ -61,9 +61,9 @@ export class PatientParserService {
   }
 
   getMedications(jsonPayload: any): Medication[]{
-    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'Medication');
+    const start = jsonPayload;
     const result: Medication[] = [];
-    for (const i of start) {
+    for (const i of start.entry) {
       const c = new Medication();
       c.id = i.resource.id;
       c.code = i.resource.code.text;
@@ -73,9 +73,9 @@ export class PatientParserService {
   }
 
   getMedicationRequests(jsonPayload: any): MedicationRequest[]{
-    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'MedicationRequest');
+    const start = jsonPayload;
     const result: MedicationRequest[] = [];
-    for (const i of start) {
+    for (const i of start.entry) {
       const c = new MedicationRequest();
       c.id = i.resource.id;
       c.text = i.resource.medicationCodeableConcept.text;
@@ -85,9 +85,9 @@ export class PatientParserService {
   }
 
   getImagingStudies(jsonPayload: any): ImagingStudy[]{
-    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'ImagingStudy');
+    const start = jsonPayload;
     const result: ImagingStudy[] = [];
-    for (const i of start) {
+    for (const i of start.entry) {
       const c = new ImagingStudy();
       c.id = i.resource.id;
       for (const s of i.resource.series) {
@@ -99,10 +99,10 @@ export class PatientParserService {
   }
 
   getClinicalImpressions(jsonPayload: any): ClinicalImpression[]{
-    const start = jsonPayload.entry.filter(item => item.resource.resourceType === 'ClinicalImpression');
+    const start = jsonPayload;
     console.log(start);
     const result: ClinicalImpression[] = [];
-    for (const i of start) {
+    for (const i of start.entry) {
       const c = new ClinicalImpression();
       c.id = i.resource.id;
       c.code = i.resource.investigation[0].code.text;
