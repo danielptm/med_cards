@@ -18,7 +18,7 @@ export class FhirhttpService {
 
   constructor(private http: HttpClient, private patientService: PatientService) { }
 
-  getPatientAll(id: string): Promise<any> {
+  getPatient(id: string): Promise<any> {
     return this.http.get(this.originalUrl + '/Patient/' + id + '/$everything').toPromise();
   }
 

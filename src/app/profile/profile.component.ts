@@ -19,6 +19,8 @@ export class ProfileComponent implements OnInit {
               private parse: PatientParserService) { }
 
   ngOnInit(): void {
+    this.patient = this.patientService.getPatient();
+    // if (this.patient.conditions.filter(item => item.))
     // this.route.params.subscribe(params => {
     //   if (params.id) {
     //     if (this.patientService.patients.length === 0) {

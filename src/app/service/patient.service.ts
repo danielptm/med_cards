@@ -17,7 +17,7 @@ export class PatientService {
     this.patient = p;
   }
 
-  getPatient(p: Patient): Patient {
+  getPatient(): Patient {
     return this.patient;
   }
 

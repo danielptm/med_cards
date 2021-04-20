@@ -2,7 +2,8 @@ import {Condition} from './condition';
 import {Observation} from './observation';
 import {DiagnosticReport} from './diagnostic-report';
 import {ImagingStudy} from './imaging-study';
-import {Medication} from './medication';
+import {ClinicalImpression} from './clinical-impression';
+import {MedicationRequest} from './medication-request';
 
 export class Patient {
   id: string;
@@ -22,6 +23,8 @@ export class Patient {
   // Diagnostic images related to stroke
   diagnosticImages: ImagingStudy[] = [];
 
-  medications: Medication[] = [];
+  medications: MedicationRequest[] = [];
+
+  clinicalImpressions: ClinicalImpression[] = [];
 
 }

@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {Condition} from '../model/condition';
 import {Observation} from '../model/observation';
 import {Patient} from '../model/patient';
-import {Medication} from "../model/medication";
-import {MedicationRequest} from "../model/medication-request";
-import {ImagingStudy} from "../model/imaging-study";
-import {ClinicalImpression} from "../model/clinical-impression";
+import {Medication} from '../model/medication';
+import {MedicationRequest} from '../model/medication-request';
+import {ImagingStudy} from '../model/imaging-study';
+import {ClinicalImpression} from '../model/clinical-impression';
 
 @Injectable({
   providedIn: 'root'
@@ -98,13 +98,14 @@ export class PatientParserService {
     return result;
   }
 
-  getClinicalImpressions(jsonPayload: any):ClinicalImpression[]{
+  getClinicalImpressions(jsonPayload: any): ClinicalImpression[]{
     const start = jsonPayload;
+    console.log(start);
     const result: ClinicalImpression[] = [];
     for (const i of start.entry) {
       const c = new ClinicalImpression();
       c.id = i.resource.id;
-      c.code = i.resource.investigation.code.text;
+      c.code = i.resource.investigation[0].code.text;
       result.push(c);
     }
     return result;
