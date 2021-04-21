@@ -53,6 +53,10 @@ export class PatientParserService {
       for (const s of i.resource.code.coding) {
         c.conditionIds.push(s.code);
       }
+      console.log(i.resource);
+      if (i.resource.clinicalStatus.coding[0] && i.resource.clinicalStatus.coding[0].code != 'active') {
+        c.active = false;
+      }
       c.text = i.resource.code.text;
       c.abatementDateTime = i.resource.abatementDateTime;
       result.push(c);
