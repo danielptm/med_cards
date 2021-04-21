@@ -15,6 +15,12 @@
         <h3>Conditions:</h3>
         <div *ngFor="let c of this.patientService.getPatient().conditions">
           <div [ngClass]="{'yellow' : c.text.includes('Stroke')}">{{c.text}}</div>
+          <div class="green" *ngIf="c.active">
+            active
+          </div>
+          <div class="red" *ngIf="!c.active">
+            inactive
+          </div>
         </div>
 
       <h3>Medication requests:</h3>
