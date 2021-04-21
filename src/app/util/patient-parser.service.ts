@@ -53,7 +53,8 @@ export class PatientParserService {
       for (const s of i.resource.code.coding) {
         c.conditionIds.push(s.code);
       }
-      if (i.resource.clinicalStatus[0].code !== 'active') {
+      console.log(i.resource);
+      if (i.resource.clinicalStatus.coding[0] && i.resource.clinicalStatus.coding[0].code != 'active') {
         c.active = false;
       }
       c.text = i.resource.code.text;
