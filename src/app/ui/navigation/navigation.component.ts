@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {PatientService} from '../../service/patient.service';
+import {Patient} from '../../model/patient';
 
 @Component({
   selector: 'app-navigation',
@@ -8,21 +10,44 @@ import {Router} from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  isPresent = false;
+  constructor(private router: Router, private patientService: PatientService) { }
 
   ngOnInit(): void {
-  }
-
-  routeMedical(): void {
-    this.router.navigate(['complaints']);
 
   }
+
 
   routeSearch(): void {
+    this.patientService.setPatient(undefined);
     this.router.navigate(['search']);
   }
 
-  routeProcedures(): void {
-    this.router.navigate(['procedures']);
+  routeProfile(): void {
+    this.router.navigate(['profile']);
+  }
+
+  routeInactive(): void {
+    this.router.navigate(['inactive']);
+  }
+
+  routeImpressions(): void {
+    this.router.navigate(['impressions']);
+  }
+
+  routeObservations(): void {
+    this.router.navigate(['observations']);
+  }
+
+  routeMedication(): void {
+    this.router.navigate(['medication-requests']);
+  }
+
+  routeLabs(): void {
+    this.router.navigate(['labs']);
+  }
+
+  routeImaging(): void {
+    this.router.navigate(['imaging-studies']);
   }
 }

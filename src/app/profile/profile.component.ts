@@ -4,6 +4,7 @@ import {FhirhttpService} from '../util/fhirhttp.service';
 import {PatientService} from '../service/patient.service';
 import {Patient} from '../model/patient';
 import {PatientParserService} from '../util/patient-parser.service';
+import {Condition} from '../model/condition';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,7 @@ import {PatientParserService} from '../util/patient-parser.service';
 export class ProfileComponent implements OnInit {
 
   patient: Patient;
+  conditions: Condition[] = [];
 
   constructor(private route: ActivatedRoute, private fhirService: FhirhttpService,
               public patientService: PatientService,
@@ -20,6 +22,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.patient = this.patientService.getPatient();
+    this.conditions.push(...this.patient.conditions.filter(c => c.active));
+
     // if (this.patient.conditions.filter(item => item.))
     // this.route.params.subscribe(params => {
     //   if (params.id) {

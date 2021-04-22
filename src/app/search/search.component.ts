@@ -68,7 +68,7 @@ export class SearchComponent implements OnInit {
             this.patientService.setPatient(patientState);
           });
         setTimeout(() => {
-          this.router.navigate(['/profile/' + this.patientService.getPatient().id]);
+          this.router.navigate(['/profile']);
         }, 1500);
       }, e => {
         alert('There was an error with id: ' + text);
