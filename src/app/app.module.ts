@@ -15,6 +15,12 @@ import {PatientService} from './service/patient.service';
 import { GenericCardComponent } from './ui/generic-card/generic-card.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { InactiveComponent } from './inactive/inactive.component';
+import { ImpressionsComponent } from './impressions/impressions.component';
+import { ObservationsComponent } from './observations/observations.component';
+import { MedicationRequestsComponent } from './medication-requests/medication-requests.component';
+import { LabsComponent } from './labs/labs.component';
+import { ImagingStudiesComponent } from './imaging-studies/imaging-studies.component';
 
 
 @NgModule({
@@ -24,7 +30,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ProfileComponent,
     PatientCardComponent,
     NavigationComponent,
-    GenericCardComponent
+    GenericCardComponent,
+    InactiveComponent,
+    ImpressionsComponent,
+    ObservationsComponent,
+    MedicationRequestsComponent,
+    LabsComponent,
+    ImagingStudiesComponent
   ],
   imports: [
     BrowserModule,
