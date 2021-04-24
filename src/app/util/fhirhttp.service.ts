@@ -43,7 +43,7 @@ export class FhirhttpService {
   }
 
   getDiagnosticReportForpatient(patientId: string): Promise<any> {
-    return this.http.get(this.originalUrl + '/DiagnosticReport?patient=' + patientId).toPromise();
+    return this.http.get(this.originalUrl + '/ImagingStudy?patient=' + patientId).toPromise();
   }
 
   getClinicalImpressionForPatient(patientId: string): Promise<any> {
