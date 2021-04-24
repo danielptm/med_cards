@@ -92,12 +92,12 @@ export class PatientParserService {
     const start = jsonPayload;
     const result: ImagingStudy[] = [];
     for (const i of start.entry) {
-      const c = new ImagingStudy();
-      c.id = i.resource.id;
       for (const s of i.resource.series) {
+        const c = new ImagingStudy();
+        c.id = i.resource.id;
         c.description = s.description;
+        result.push(c);
       }
-      result.push(c);
     }
     return result;
   }
@@ -107,10 +107,14 @@ export class PatientParserService {
     console.log(start);
     const result: ClinicalImpression[] = [];
     for (const i of start.entry) {
-      const c = new ClinicalImpression();
-      c.id = i.resource.id;
-      c.code = i.resource.investigation[0].code.text;
-      result.push(c);
+      for (const j of i.resource.investigation) {
+        for (const k of j.item) {
+          const c = new ClinicalImpression();
+          c.id = i.resource.id;
+          c.code = k.display;
+          result.push(c);
+        }
+      }
     }
     return result;
 
